@@ -14,7 +14,7 @@ module.exports.getCard = (req, res) => {
       }
       return res
         .status(404)
-        .send({ message: "Карточка с таким id не найдена." });
+        .send({ message: "Карточка c таким id не найдена." });
     })
     .catch((err) => {
       if (err.name === "CastError") {
@@ -46,19 +46,16 @@ module.exports.postCard = (req, res) => {
 };
 
 module.exports.deleteCard = (req, res) => {
-  // console.log(req.params.cardId);
   Card.findByIdAndRemove(req.params.cardId, { runValidators: true })
     .then((card) => {
-      // console.log(card);
       if (card) {
         return res.status(200).send({ message: "DELETED" });
       }
       return res
         .status(404)
-        .send({ message: "Карточка с указанным _id не найдена." });
+        .send({ message: "Карточка c указанным _id не найдена." });
     })
     .catch((err) => {
-      // console.log(err.name);
       if (err.name === "CastError") {
         return res
           .status(400)

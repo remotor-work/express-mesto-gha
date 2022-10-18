@@ -14,7 +14,7 @@ module.exports.getUser = (req, res) => {
       }
       return res
         .status(404)
-        .send({ message: "Пользователь с таким id не найден." });
+        .send({ message: "Пользователь c таким id не найден." });
     })
     .catch((err) => {
       if (err.name === "CastError") {
@@ -31,7 +31,6 @@ module.exports.addUser = (req, res) => {
   User.create({ name, about, avatar })
     .then((user) => res.status(200).send(user))
     .catch((err) => {
-      // console.log(err);
       if (err.name === "ValidationError") {
         return res.status(400).send({
           message: "Переданы некорректные данные при создании пользователя.",
@@ -55,7 +54,7 @@ module.exports.patchUser = (req, res) => {
       }
       return res
         .status(404)
-        .send({ message: "Пользователь с указанным _id не найден." });
+        .send({ message: "Пользователь c указанным _id не найден." });
     })
     .catch((err) => {
       if (err.name === "ValidationError") {
@@ -66,7 +65,7 @@ module.exports.patchUser = (req, res) => {
       if (err.name === "CastError") {
         return res
           .status(404)
-          .send({ message: "Пользователь с указанным _id не найден." });
+          .send({ message: "Пользователь c указанным _id не найден." });
       }
       return res.status(500).send({ message: "Ошибка по умолчанию." });
     });
@@ -85,7 +84,7 @@ module.exports.patchAvatar = (req, res) => {
       }
       return res
         .status(404)
-        .send({ message: "Пользователь с указанным _id не найден." });
+        .send({ message: "Пользователь c указанным _id не найден." });
     })
     .catch((err) => {
       if (err.name === "ValidationError") {
@@ -96,10 +95,8 @@ module.exports.patchAvatar = (req, res) => {
       if (err.name === "CastError") {
         return res
           .status(404)
-          .send({ message: "Пользователь с указанным _id не найден." });
+          .send({ message: "Пользователь c указанным _id не найден." });
       }
       return res.status(500).send({ message: "Ошибка по умолчанию." });
     });
 };
-
-const SERVER_ERROR_CODE = 500;
