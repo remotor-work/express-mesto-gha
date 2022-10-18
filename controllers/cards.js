@@ -49,7 +49,7 @@ module.exports.deleteCard = (req, res) => {
   Card.findByIdAndRemove(req.params.cardId, { runValidators: true })
     .then((card) => {
       if (card) {
-        return res.status(200).send({ message: 'DELETED' });
+        return res.status(200).send({ message: 'Удалено' });
       }
       return res
         .status(404)
