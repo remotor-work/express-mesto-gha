@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const routes = require('./routes');
@@ -15,6 +16,7 @@ const app = express();
 const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 100 });
 
 app.use(express.json());
+app.use(helmet());
 app.use(limiter);
 app.use(cookieParser());
 app.use(routes);
