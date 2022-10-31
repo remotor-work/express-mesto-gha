@@ -15,7 +15,7 @@ const getUsers = (req, res, next) => {
 const getUserById = (req, res, next) => {
   User.findById(req.params._id)
     .orFail(() => {
-      throw new NotFoundError('Пользователь с указанным _id не найден.');
+      throw new NotFoundError('Пользователь c указанным _id не найден.');
     })
     .then((user) => {
       res.send(user);
@@ -42,7 +42,7 @@ const createUser = (req, res, next) => {
       email: user.email,
     }))
     .catch((err) => {
-      if (err.code === 11000) next(new ConflictError('Пользователь с таким email уже существует.'));
+      if (err.code === 11000) next(new ConflictError('Пользователь c таким email уже существует.'));
       else if (err instanceof mongoose.Error.ValidationError) next(new BadRequestError('Ошибка валидации.'));
       else next(err);
     });
@@ -53,7 +53,7 @@ const updateUserProfile = (req, res, next) => {
 
   User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
     .orFail(() => {
-      throw new NotFoundError('Пользователь с указанным _id не найден.');
+      throw new NotFoundError('Пользователь c указанным _id не найден.');
     })
     .then((newProfile) => res.send(newProfile))
     .catch((err) => {
@@ -68,7 +68,7 @@ const updateUserAvatar = (req, res, next) => {
 
   User.findByIdAndUpdate(req.user._id, { avatar }, { new: true, runValidators: true })
     .orFail(() => {
-      throw new NotFoundError('Пользователь с указанным _id не найден.');
+      throw new NotFoundError('Пользователь c указанным _id не найден.');
     })
     .then((newAvatar) => res.send(newAvatar))
     .catch((err) => {
